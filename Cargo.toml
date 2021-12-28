@@ -2,6 +2,14 @@
 name = "atomic-story"
 version = "0.1.0"
 edition = "2021"
+authors = ["Blas Rodriguez Irizar <rodrigblas@gmail.com>"]
+license = "Apache-2.0"
+repository = "https://github.com/blasrodri/atomic-story"
+documentation = "https://docs.rs/atomic-story"
+readme = "README.md"
+description = "An brief overview of atomics and memory ordering on a multi-threaded context with examples."
+keywords = ["atomics", "memory-ordering", "multi-threaded", "concurrency"]
+
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
