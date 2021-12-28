@@ -16,6 +16,11 @@
 //! This example is more interesting. There are two threads: a writer and a reader. And two values,
 //! `num_a` and `num_b`. This exmample explores different `Ordering` combinations, and how they
 //! can yield different results.
+//!
+//! ## How to run the tests/examples
+//! ```sh
+//! cargo test
+//! ```
 
 pub mod counter_one_writer_one_reader;
 pub mod two_numbers_with_dependency;

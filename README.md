@@ -16,3 +16,9 @@ final value after all threads have incremented the value.
 This example is more interesting. There are two threads: a writer and a reader. And two values,
 `num_a` and `num_b`. This exmample explores different `Ordering` combinations, and how they
 can yield different results.
+
+## How to run the tests/examples
+They are just Rust tests. Run:
+```sh
+cargo test
+```
