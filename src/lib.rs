@@ -1,2 +1,2 @@
 mod counter_one_writer_one_reader;
-mod failing;
+mod two_numbers_with_dependency;
