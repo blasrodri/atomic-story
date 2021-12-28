@@ -133,116 +133,20 @@ mod tests {
     #[should_panic]
     fn atomics_writer_release_reader_relaxed_failing() {
         two_numbers_with_a_dependency(Release, Release, Relaxed, Relaxed);
-
-        // loom::model(move || {
-        //     let num_a = Arc::new(AtomicUsize::new(1));
-        //     let num_b = Arc::new(AtomicUsize::new(0));
-
-        //     let num_a2 = num_a.clone();
-        //     let num_b2 = num_b.clone();
-        //     let tb = thread::spawn(move || {
-        //         for idx in 1..4 {
-        //             num_a2.store(idx + 1, Release);
-        //             num_b2.store(idx, Release);
-        //         }
-        //     });
-
-        //     let _ = thread::spawn(move || {
-        //         for _ in 1..4 {
-        //             let nb = num_b.load(Relaxed);
-        //             let na = num_a.load(Relaxed);
-        //             assert!(na >= nb);
-        //         }
-        //     });
-        //     tb.join().unwrap();
-        // });
     }
 
     #[test]
     fn atomics_writer_release_reader_seqcst_and_relaxed() {
         two_numbers_with_a_dependency(Release, Release, Relaxed, SeqCst);
-
-        // loom::model(move || {
-        //     let num_a = Arc::new(AtomicUsize::new(1));
-        //     let num_b = Arc::new(AtomicUsize::new(0));
-
-        //     let num_a2 = num_a.clone();
-        //     let num_b2 = num_b.clone();
-        //     let tb = thread::spawn(move || {
-        //         for idx in 1..4 {
-        //             num_a2.store(idx + 1, Release);
-        //             num_b2.store(idx, Release);
-        //         }
-        //     });
-
-        //     let _ = thread::spawn(move || {
-        //         for _ in 1..4 {
-        //             // Note that if we put SeqCst on num_b, we ensure that it's read _before_ num_a, which
-        //             // ensures that the test passes.
-        //             let nb = num_b.load(SeqCst);
-        //             let na = num_a.load(Relaxed);
-        //             assert!(na >= nb);
-        //         }
-        //     });
-        //     tb.join().unwrap();
-        // });
     }
 
     #[test]
     fn atomics_seq_cst_does_not_fail() {
         two_numbers_with_a_dependency(SeqCst, SeqCst, SeqCst, SeqCst);
-
-        // let ordering = SeqCst;
-        // loom::model(move || {
-        //     let num_a = Arc::new(AtomicUsize::new(1));
-        //     let num_b = Arc::new(AtomicUsize::new(0));
-
-        //     let num_a2 = num_a.clone();
-        //     let num_b2 = num_b.clone();
-        //     let tb = thread::spawn(move || {
-        //         for idx in 1..4 {
-        //             num_a2.store(idx + 1, ordering);
-        //             num_b2.store(idx, ordering);
-        //         }
-        //     });
-
-        //     let _ = thread::spawn(move || {
-        //         for _ in 1..4 {
-        //             let nb = num_b.load(ordering);
-        //             let na = num_a.load(ordering);
-        //             assert!(na >= nb);
-        //         }
-        //     });
-        //     tb.join().unwrap();
-        // });
     }
 
     #[test]
     fn atomics_acquire_release_does_not_fail() {
         two_numbers_with_a_dependency(Release, Release, Acquire, Acquire);
-
-        // loom::model(move || {
-        //     let num_a = Arc::new(AtomicUsize::new(1));
-        //     let num_b = Arc::new(AtomicUsize::new(0));
-
-        //     let num_a2 = num_a.clone();
-        //     let num_b2 = num_b.clone();
-        //     let tb = thread::spawn(move || {
-        //         for idx in 1..4 {
-        //             // on every iteration of the loop, num_a > num_b
-        //             num_a2.store(idx + 1, Release);
-        //             num_b2.store(idx, Release);
-        //         }
-        //     });
-
-        //     let _ = thread::spawn(move || {
-        //         for _ in 1..4 {
-        //             let nb = num_b.load(Acquire);
-        //             let na = num_a.load(Acquire);
-        //             assert!(na >= nb);
-        //         }
-        //     });
-        //     tb.join().unwrap();
-        // });
     }
 }
