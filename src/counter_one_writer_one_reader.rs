@@ -1,20 +1,19 @@
 //! # Verify that Relaxed works fine when updating a counter
 //!
-//! Our first example describes the following scenario: There is one writer thread
-//! and one reader thread, and there is only one counter being updated.
-//! The ordering chosen is `Ordering::Relaxed`. And we show that, when the writer
-//! increments it once, the reader might see the change or not.
 //!
-//! Atomic operations tagged memory_order_relaxed are not synchronization operations; they do not impose an order among concurrent memory accesses.
+//! Atomic operations tagged memory_order_relaxed are not synchronization operations; they do not impose an
+//! order among concurrent memory accesses.
+//!
 //! They only guarantee atomicity and modification order consistency.
+//!
 //! # Relaxed
-//! Our first example describes the following scenario: There is one writer thread
-//! and one reader thread, and there is only one counter being updated.
-//! The ordering chosen is `Ordering::Relaxed`. And we show that, when the writer
-//! increments it once, the reader might see the change or not.
+//! Our first example describes the following scenario: There are three writer threads
+//! and the main thread acts as the only reader. There is only one counter being updated.
+//! The ordering chosen is `Ordering::Relaxed`. We show that, after joining the writer threads
+//! the value is properly update.
 //!
-//! Atomic operations tagged memory_order_relaxed are not synchronization operations; they do not impose an order among concurrent memory accesses.
-//! They only guarantee atomicity and modification order consistency.
+//! I am still trying to come up with a meaningful failing example.
+//!
 //!
 //!
 //! ```rust
